@@ -1,19 +1,11 @@
 'use client'
 
+import { ProductCart } from '@/app/components/AddToBag'
 import { urlFor } from '@/app/lib/sanity'
 import { Button } from '@/components/ui/button'
 import { useShoppingCart } from 'use-shopping-cart'
 
-export interface ProductCart {
-  name: string
-  description: string
-  price: number
-  currency: string
-  image: string
-  price_id: string
-}
-
-export default function AddToBag({
+export default function CheckoutNow({
   name,
   description,
   price,
@@ -21,7 +13,10 @@ export default function AddToBag({
   image,
   price_id,
 }: ProductCart) {
-  const { addItem, handleCartClick } = useShoppingCart()
+  const { checkoutSingleItem } = useShoppingCart()
+  function buyNow(priceId: string) {
+    checkoutSingleItem(priceId)
+  }
 
   const product = {
     name: name,
@@ -34,11 +29,10 @@ export default function AddToBag({
   return (
     <Button
       onClick={() => {
-        addItem(product)
-        handleCartClick()
+        buyNow(product.price_id)
       }}
     >
-      Add To Cart
+      Checkout Now
     </Button>
   )
 }
