@@ -14,6 +14,7 @@ async function getData(slug: string) {
     "categoryName": category->name,
     images,
     "slug": slug.current,
+    price_id
   }`
 
   const data = await client.fetch(query)
@@ -80,6 +81,7 @@ export default async function ProductPage({
                 currency="USD"
                 image={data.images[0]}
                 key={data._id}
+                price_id={data.price_id}
               />
               <Button variant={'secondary'}>Checkout now</Button>
             </div>

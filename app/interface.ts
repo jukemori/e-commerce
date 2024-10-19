@@ -15,4 +15,5 @@ export interface fullProduct {
   categoryName: string
   images: string[]
   description: string
+  price_id: string
 }
