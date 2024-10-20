@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# E-Commerce Project with Next.js and Sanity
+
+This project is an e-commerce website built with Next.js, utilizing Sanity as a headless CMS for content management and Stripe for payment processing. It features a product catalog, category management, and a customizable hero section.
+
+<img src="./public/ProjectImages/image1.png" alt="" width="400">
+<img src="./public/ProjectImages/image2.png" alt="" width="400">
+<img src="./public/ProjectImages/image3.png" alt="" width="400">
+<img src="./public/ProjectImages/image4.png" alt="" width="400">
+
+## Live Demo
+
+Check out the live demo of the project:
+
+[**🚀 E-Commerce Demo Site**](https://e-commerce-three-sigma-45.vercel.app/)
+
+## Tech Stack
+
+- Next.js
+- TypeScript
+- Tailwind CSS
+- Shadcn UI
+- Sanity CMS
+- Stripe (for payments)
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+   ```
+   git clone https://github.com/jukemori/e-commerce.git
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+   ```
+   cd your-repo-name
+   npm install
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Set up environment variables:
+   Create a `.env.local` file in the root directory and add the following:
 
-## Learn More
+   ```
+   NEXT_PUBLIC_SANITY_PROJECT_ID=your_sanity_project_id
+   NEXT_PUBLIC_SANITY_DATASET=your_sanity_dataset
+   NEXT_PUBLIC_SANITY_API_VERSION=your_sanity_api_version
+   NEXT_PUBLIC_STRIPE_KEY=your_stripe_public_key
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. Start the Next.js development server:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```
+   npm run dev
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-## Deploy on Vercel
+## Running the Sanity Studio
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To run the Sanity Studio locally:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Navigate to the Sanity directory:
+
+   ```
+   cd sanity
+   ```
+
+2. Install Sanity Studio dependencies (if not already done):
+
+   ```
+   npm install
+   ```
+
+3. Start the Sanity Studio development server:
+
+   ```
+   npm run dev
+   ```
+
+4. Open [http://localhost:3333](http://localhost:3333) in your browser to access the Sanity Studio.
+
+## Sanity Schema
+
+Our Sanity schema includes the following content types:
+
+1. **Product**: Represents products in the e-commerce store.
+
+   - Fields: name, images, description, slug, price, price_id (Stripe), category
+
+2. **Category**: Used to categorize products.
+
+   - Fields: name
+
+3. **HeroImages**: Stores two hero images for the homepage.
+   - Fields: image1, image2
+
+To modify the schema, edit the files in the `sanity/schemaTypes` directory.
+
+## Stripe Integration
+
+We use Stripe for payment processing. The Stripe public key is configured in the `.env.local` file.
+
+To interact with Stripe, use the `NEXT_PUBLIC_STRIPE_KEY` environment variable in your client-side code.
