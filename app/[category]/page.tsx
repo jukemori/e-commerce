@@ -5,14 +5,26 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 async function getData(category: string) {
-  const query = `*[_type == "product" && category->name == "${category}"] {
-         _id,
-         name,
-         "slug": slug.current,
-         price,
-         "imageUrl": images[0].asset->url,
-         "categoryName": category->name,
-         }`
+  let query = ''
+  if (category.toLowerCase() === 'all') {
+    query = `*[_type == "product"] {
+      _id,
+      name,
+      "slug": slug.current,
+      price,
+      "imageUrl": images[0].asset->url,
+      "categoryName": category->name,
+    }`
+  } else {
+    query = `*[_type == "product" && category->name == "${category}"] {
+      _id,
+      name,
+      "slug": slug.current,
+      price,
+      "imageUrl": images[0].asset->url,
+      "categoryName": category->name,
+    }`
+  }
   const data = await client.fetch(query)
 
   return data
